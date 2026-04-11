@@ -189,7 +189,7 @@ function PricingModal({ open, onClose }) {
             <h2 style={{ fontSize: 24, fontWeight: 600, letterSpacing: "-0.02em", color: C.primary, fontFamily: "'DM Sans', sans-serif", margin: 0 }}>Choose a plan</h2>
             <p style={{ fontSize: 13, color: C.muted, marginTop: 6, lineHeight: 1.6 }}>Scale as you grow. Cancel any time.</p>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <div className="nav-actions" style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <span style={{ fontSize: 11, color: C.muted }}>Monthly</span>
             <button onClick={() => setAnnual(a => !a)} style={{ position: "relative", width: 40, height: 22, borderRadius: 99, background: annual ? C.green : "rgba(240,244,240,0.10)", border: "none", cursor: "pointer", transition: "background 0.2s" }}>
               <span style={{ position: "absolute", top: 3, left: annual ? 21 : 3, width: 16, height: 16, borderRadius: "50%", background: annual ? "#1A1D1A" : C.muted, transition: "left 0.2s ease" }} />
@@ -198,7 +198,7 @@ function PricingModal({ open, onClose }) {
           </div>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
+        <div className="grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
           {PLANS.map((plan) => (
             <div key={plan.name} style={{ position: "relative", borderRadius: 18, padding: 28, display: "flex", flexDirection: "column", gap: 22, background: plan.popular ? "rgba(232,162,168,0.07)" : C.card2, border: plan.popular ? `1.5px solid ${C.rose}44` : "1.5px solid rgba(240,244,240,0.07)" }}>
               {plan.popular && (
@@ -238,7 +238,7 @@ function PreviewModal({ open, onClose, result }) {
   return (
     <Modal open={open} onClose={onClose} width={920}>
       <div style={{ padding: 40, display: "flex", flexDirection: "column", gap: 24 }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div className="modal-header-row" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <div>
             <h2 style={{ fontSize: 20, fontWeight: 600, color: C.primary, fontFamily: "'DM Sans', sans-serif", margin: 0 }}>Preview Fix</h2>
             <p style={{ fontSize: 11, fontFamily: "'DM Mono', monospace", color: C.muted, marginTop: 4 }}>{result.path}</p>
@@ -246,7 +246,7 @@ function PreviewModal({ open, onClose, result }) {
           <button onClick={onClose} style={{ background: "rgba(240,244,240,0.06)", border: "1px solid rgba(240,244,240,0.09)", borderRadius: 8, cursor: "pointer", color: C.muted, padding: "6px 12px", fontFamily: "inherit", fontSize: 12 }}>✕ Close</button>
         </div>
         <Divider />
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+        <div className="grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
           {/* BEFORE */}
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -324,7 +324,7 @@ function BulkModal({ open, onClose }) {
           placeholder={"https://yoursite.io\nhttps://othersite.com\nhttps://docs.example.io"}
           style={{ background: "rgba(240,244,240,0.04)", border: "1.5px solid rgba(240,244,240,0.09)", borderRadius: 12, color: C.primary, fontFamily: "'DM Mono', monospace", fontSize: 12, lineHeight: 1.8, padding: "14px 16px", resize: "vertical", outline: "none", width: "100%" }}
         />
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div className="modal-header-row" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <span style={{ fontSize: 11, fontFamily: "'DM Mono', monospace", color: C.muted }}>{lines} URL{lines !== 1 ? "s" : ""} detected</span>
           <div style={{ display: "flex", gap: 10 }}>
             <Btn variant="ghost" onClick={onClose}>Cancel</Btn>
@@ -371,7 +371,7 @@ function ResultCard({ result, onPreview }) {
   return (
     <div style={{ borderRadius: 20, background: C.card, boxShadow: "0 8px 32px rgba(0,0,0,0.28)" }}>
       {/* Header */}
-      <div style={{ padding: "32px 32px 24px", display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 20 }}>
+      <div className="result-card-header modal-padding" style={{ padding: "32px 32px 24px", display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 20 }}>
         <div style={{ display: "flex", alignItems: "flex-start", gap: 20 }}>
           <div style={{ borderRadius: 14, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, fontWeight: 600, flexShrink: 0, width: 64, height: 64, background: "rgba(232,162,168,0.10)", color: C.rose, border: "1px solid rgba(232,162,168,0.18)", fontFamily: "'DM Sans', sans-serif" }}>
             {result.code}
@@ -457,7 +457,7 @@ function AnalyticsTab() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
+      <div className="grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
         {[
           { label: "Total Scans",        value: totalScans,  color: C.primary },
           { label: "Broken Links Found", value: totalBroken, color: C.rose    },
@@ -500,7 +500,7 @@ function AnalyticsTab() {
           {TOP_BROKEN.map((d) => {
             const rate = Math.round((d.fixed / d.broken) * 100);
             return (
-              <div key={d.domain} style={{ display: "flex", alignItems: "center", gap: 16 }}>
+              <div key={d.domain} className="domain-row" style={{ display: "flex", alignItems: "center", gap: 16 }}>
                 <span style={{ fontSize: 13, fontFamily: "'DM Mono', monospace", color: C.secondary, width: 180, flexShrink: 0 }}>{d.domain}</span>
                 <div style={{ flex: 1 }}><ProgressBar progress={rate} color={rate === 100 ? C.green : C.rose} /></div>
                 <span style={{ fontSize: 11, fontFamily: "'DM Mono', monospace", color: C.muted, width: 70, textAlign: "right", flexShrink: 0 }}>{d.fixed}/{d.broken} fixed</span>
@@ -517,7 +517,8 @@ function AnalyticsTab() {
 function HistoryTab() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-      <div style={{ borderRadius: 20, overflow: "hidden", background: C.card, boxShadow: "0 4px 20px rgba(0,0,0,0.2)" }}>
+      <div className="history-container" style={{ borderRadius: 20, overflow: "hidden", background: C.card, boxShadow: "0 4px 20px rgba(0,0,0,0.2)" }}>
+        <div className="history-inner">
         <div style={{ display: "grid", gridTemplateColumns: "1fr 200px 80px 80px 80px 110px", padding: "16px 24px", borderBottom: "1px solid rgba(240,244,240,0.05)" }}>
           {["Domain", "Date", "Scanned", "Broken", "Fixed", "Status"].map(h => (
             <span key={h} style={{ fontSize: 10, textTransform: "uppercase", letterSpacing: "0.1em", color: C.muted, fontFamily: "'DM Mono', monospace" }}>{h}</span>
@@ -536,6 +537,7 @@ function HistoryTab() {
             <Tag color={row.status === "done" ? C.green : "#F0C987"}>{row.status === "done" ? "All Fixed" : "Partial"}</Tag>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );
@@ -602,11 +604,33 @@ export default function App() {
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .pulse-dot { animation: pulseDot 1.4s ease-in-out infinite; display: inline-block; }
         @keyframes pulseDot { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+              /* RESPONSIVE STYLES */
+        @media (max-width: 768px) {
+          .nav-container { flex-direction: column !important; height: auto !important; padding: 16px !important; gap: 16px !important; }
+          .nav-actions { display: none !important; }
+          .main-content { padding: 24px 16px !important; }
+          .url-input-group { flex-direction: column !important; }
+          .url-input-group button, .url-input-group input { width: 100% !important; min-width: unset !important; }
+          .crawl-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+          .crawl-stats { border-left: none !important; padding-left: 0 !important; border-top: 1px solid rgba(240,244,240,0.06); padding-top: 24px; flex-direction: row !important; flex-wrap: wrap !important; justify-content: space-between; gap: 16px !important; }
+          .results-header { flex-direction: column; align-items: flex-start !important; gap: 16px !important; }
+          .result-card-header { flex-direction: column; align-items: flex-start !important; padding: 24px 20px !important; }
+          .grid-3 { grid-template-columns: 1fr !important; }
+          .grid-2 { grid-template-columns: 1fr !important; }
+          .domain-row { flex-direction: column; align-items: flex-start !important; gap: 8px !important; }
+          .domain-row > div { width: 100% !important; }
+          .domain-row > span { width: auto !important; }
+          .history-container { overflow-x: auto; }
+          .history-inner { min-width: 700px; padding-bottom: 8px; }
+          .modal-padding { padding: 24px !important; }
+          .modal-header-row { flex-direction: column; align-items: flex-start !important; gap: 16px !important; }
+        }
+
       `}</style>
 
       {/* ── STICKY NAV ── */}
       <div style={{ borderBottom: "1px solid rgba(240,244,240,0.05)", background: "rgba(26,29,26,0.92)", backdropFilter: "blur(12px)", position: "sticky", top: 0, zIndex: 40 }}>
-        <div style={{ maxWidth: 960, margin: "0 auto", padding: "0 24px", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
+        <div className="nav-container" style={{ maxWidth: 960, margin: "0 auto", padding: "0 24px", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
           {/* Logo */}
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <span style={{ fontSize: 15, fontWeight: 600, letterSpacing: "-0.02em", color: C.rose, fontFamily: "'DM Mono', monospace" }}>BROKENLINK</span>
@@ -638,18 +662,18 @@ export default function App() {
       </div>
 
       {/* ── MAIN CONTENT ── */}
-      <div style={{ maxWidth: 960, margin: "0 auto", padding: "40px 24px", display: "flex", flexDirection: "column", gap: 28 }}>
+      <div className="main-content" style={{ maxWidth: 960, margin: "0 auto", padding: "40px 24px", display: "flex", flexDirection: "column", gap: 28 }}>
 
         {/* ── SCANNER ── */}
         {activeTab === "scanner" && (
           <>
             {/* URL Input */}
             <div style={{ borderRadius: 20, padding: 32, background: C.card, boxShadow: "0 4px 24px rgba(0,0,0,0.22)", display: "flex", flexDirection: "column", gap: 20 }}>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <div className="modal-header-row" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                 <SectionLabel>ENTER WEBSITE URL</SectionLabel>
                 <Btn variant="ghost" small icon="⇪" onClick={() => setShowBulk(true)}>Bulk Upload</Btn>
               </div>
-              <div style={{ display: "flex", gap: 12 }}>
+              <div className="url-input-group" style={{ display: "flex", gap: 12 }}>
                 <input
                   type="text" value={url} placeholder="www.quantumdesigns.io"
                   onChange={(e) => { setUrl(e.target.value); setUrlError(""); }}
@@ -674,10 +698,10 @@ export default function App() {
             {/* Crawling */}
             {(scanning || done) && (
               <div className="fade-in" style={{ borderRadius: 20, padding: 32, background: C.card, boxShadow: "0 4px 24px rgba(0,0,0,0.22)" }}>
-                <div style={{ display: "grid", gridTemplateColumns: "60% 1fr", gap: 32 }}>
+                <div className="crawl-grid" style={{ display: "grid", gridTemplateColumns: "60% 1fr", gap: 32 }}>
                   <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
                     <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                      <div className="modal-header-row" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                         <SectionLabel>{done ? "CRAWL COMPLETE" : "CRAWLING WEBSITE…"}</SectionLabel>
                         <span style={{ fontSize: 11, fontFamily: "'DM Mono', monospace", color: done ? C.green : C.rose }}>{progress}%</span>
                       </div>
@@ -702,7 +726,7 @@ export default function App() {
                       </div>
                     </div>
                   </div>
-                  <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 28, paddingLeft: 24, borderLeft: "1px solid rgba(240,244,240,0.06)" }}>
+                  <div className="crawl-stats" style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 28, paddingLeft: 24, borderLeft: "1px solid rgba(240,244,240,0.06)" }}>
                     {[
                       { label: "Scanned", value: done ? "112" : Math.round((progress / 100) * 112), color: C.primary },
                       { label: "Broken",  value: done ? "4"   : Math.round((progress / 100) * 4),   color: C.rose    },
@@ -729,7 +753,7 @@ export default function App() {
             {/* Results */}
             {showResults && (
               <div className="fade-in" style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
+                <div className="results-header" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                     <span style={{ fontSize: 22, fontWeight: 600, letterSpacing: "-0.02em", color: C.primary, fontFamily: "'DM Sans', sans-serif" }}>Results</span>
                     <Tag color={C.rose}>4 broken</Tag>
